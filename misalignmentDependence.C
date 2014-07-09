@@ -112,10 +112,12 @@ void misalignmentDependence(TCanvas *c1old,
         {
             if (!used[i]) continue;
             f[i]->SetLineColor(colors[i]);
+            f[i]->SetLineStyle(styles[i]);
             f[i]->SetLineWidth(1);
             p[i]->SetMarkerColor(colors[i]);
             p[i]->SetMarkerStyle(20+i);
             p[i]->SetLineColor(colors[i]);
+            p[i]->SetLineStyle(styles[i]);
             p[i]->Fit(f[i],"IM");
             error[i]  = f[i]->GetParError (parameter);
             if (function->GetName() == TString("sine"))

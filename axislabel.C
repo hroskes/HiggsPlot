@@ -84,7 +84,7 @@ void setAxisLabels(TMultiGraph *p, PlotType type,TString xvar,TString yvar)
 //if part <= 0 or part > (number of semicolons + 1), it returns ""
 //It's used in misalignmentDependence.C
 //It's similar to TString::Tokenize but doesn't require deleting anything
-TString nPart(Int_t part,TString string,TString delimit = ";")
+TString nPart(Int_t part,TString string,TString delimit = ";",Bool_t removerest = true)
 {
     if (part <= 0) return "";
     for (int i = 1; i < part; i++)    //part-1 times
@@ -92,7 +92,7 @@ TString nPart(Int_t part,TString string,TString delimit = ";")
         if (string.Index(delimit) < 0) return "";
         string.Replace(0,string.Index(delimit)+1,"",0);
     }
-    if (string.Index(delimit) >= 0)
+    if (string.Index(delimit) >= 0 && removerest)
         string.Remove(string.Index(delimit));
     return string;
 }

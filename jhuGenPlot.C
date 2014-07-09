@@ -254,6 +254,7 @@ TCanvas *jhuGenPlot(Int_t nFiles,TString *files,TString *names,TString xvar,TStr
         setAxisLabels(p[i],type,xvar,yvar);
 
         p[i]->SetLineColor(colors[i]);
+        p[i]->SetLineStyle(styles[i]);
         if (type == Resolution || type == Profile)
         {
             p[i]->SetMarkerColor(colors[i]);

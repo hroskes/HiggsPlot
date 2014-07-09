@@ -14,6 +14,7 @@
 
 void set_plot_style();
 vector<Color_t> colors;
+vector<Style_t> styles;
 bool styleset = false;
 void setupcolors();
 
@@ -209,5 +210,8 @@ void setupcolors()
     Color_t array[15] = {1,2,3,4,6,7,8,9,
                          kYellow+3,kOrange+10,kPink-2,kTeal+9,kAzure-8,kViolet-6,kSpring-1};
     for (int i = 0; i < 15; i++)
+    {
         colors.push_back(array[i]);
+        styles.push_back(1);
+    }
 }
