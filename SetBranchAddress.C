@@ -1,3 +1,7 @@
+#include "TTree.h"
+#include "TString.h"
+#include <vector>
+
 vector<TString> branches;
 vector<vector<void*> > variables;
 
