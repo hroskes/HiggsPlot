@@ -174,6 +174,21 @@ void axislimits(Int_t nFiles,TString *files,TString var,Double_t &min,Double_t &
         max = 1;
         min = -1;
     }
+    else if (var == "dEta_VBF")
+    {
+        max = 12;
+        min = -12;
+    }
+    else if (var == "mJJ_VBF")
+    {
+        max = 4000;
+        min = 0;
+    }
+    else if (var == "pTH")
+    {
+        max = 1200;
+        min = 0;
+    }
     else if (var == "mH")
     {
         max = ZZMassmax;
