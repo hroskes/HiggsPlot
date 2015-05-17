@@ -442,7 +442,7 @@ Bool_t misalignmentDependence(TCanvas *c1old,
 
     if (misalignment == "breitwigner")
     {
-        if (xvar == "" && yvar == "ZZMass")
+        if (xvar == "" && yvar == "mH")
         {
             f = new TF1("breitwigner","[2]*TMath::BreitWigner(x,[0],[1])");
             f->SetParameters(91,2);

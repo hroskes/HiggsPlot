@@ -1,4 +1,5 @@
 #include <iostream>
+#include <assert.h>
 #include "TString.h"
 #include "TFile.h"
 #include "TTree.h"
@@ -8,8 +9,8 @@
 
 Double_t Z1Masscut = -1;
 Double_t Z2Masscut = -1;
-Double_t ZZMassmin = 86.2;
-Double_t ZZMassmax = 96.2;
+Double_t ZZMassmin = 100;
+Double_t ZZMassmax = 140;
 
 Double_t pi = TMath::Pi();
 Int_t maxevents = -1;
@@ -30,6 +31,8 @@ Int_t binsProfileResolution = 30;    //for everything but runNumber and nHits
 
 Double_t findStatistic(Statistic what,Int_t nFiles,TString *files,TString var)
 {
+    cout << "Don't go here" << endl;
+    assert(0);
     Float_t x = 0, x1 = 0, x2 = 0, x3 = 0, wt = 1;
     x1 = x1; x2 = x2; x3 = x3;
     Float_t ZZMass = 0;
@@ -63,11 +66,11 @@ Double_t findStatistic(Statistic what,Int_t nFiles,TString *files,TString var)
         }
         else
             SetBranchAddress(tree,var,TString(var).Prepend("Gen"),&x);
-        SetBranchAddress(tree,"ZZMass","GenZZMass",&ZZMass);
+        SetBranchAddress(tree,"mH","ZZMass","GenZZMass",&ZZMass);
         if (Z1Masscut > 0)
-            SetBranchAddress(tree,"Z1Mass","GenZ1Mass",&Z1Mass);
+            SetBranchAddress(tree,"mZ1","Z1Mass","GenZ1Mass",&Z1Mass);
         if (Z2Masscut > 0)
-            SetBranchAddress(tree,"Z2Mass","GenZ2Mass",&Z2Mass);
+            SetBranchAddress(tree,"mZ2","Z2Mass","GenZ2Mass",&Z2Mass);
 
         if (var != "wt" && (what == Average || what == RMS))
             SetBranchAddress(tree,"wt","MC_weight",&wt);
@@ -161,7 +164,7 @@ Double_t findRMS(TString file,TString var)
 
 void axislimits(Int_t nFiles,TString *files,TString var,Double_t &min,Double_t &max)
 {
-    if (var.Contains("phi"))
+    if (var.Contains("phi") || var.Contains("Phi"))
     {
         max = pi;
         min = -pi;
@@ -171,17 +174,17 @@ void axislimits(Int_t nFiles,TString *files,TString var,Double_t &min,Double_t &
         max = 1;
         min = -1;
     }
-    else if (var == "ZZMass")
+    else if (var == "mH")
     {
         max = ZZMassmax;
         min = ZZMassmin;
     }
-    else if (var == "Z1Mass")
+    else if (var == "mZ1")
     {
         max = /*92*/200;
         min = TMath::Max(4.,Z1Masscut);
     }
-    else if (var == "Z2Mass")
+    else if (var == "mZ2")
     {
         max = /*40*/200;
         min = TMath::Max(4.,Z2Masscut);

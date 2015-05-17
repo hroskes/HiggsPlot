@@ -2,15 +2,13 @@
 #include "TString.h"
 #include "TSystem.h"
 
-const Int_t xsize = 28;
-const Int_t ysize = 27;
+const Int_t xsize = 1;
+const Int_t ysize = 13;
 
-TString xvariables[xsize]      = {"ZZMass", "Z1Mass", "Z2Mass", "helcosthetaZ1", "helcosthetaZ2", "helphi", "costhetastar", "phistarZ1", "l1m_pT", "l1p_pT", 
-                                  "l2m_pT", "l2p_pT", "l1m_eta", "l1p_eta", "l2m_eta", "l2p_eta", "l1m_phi", "l1p_phi", "l2m_phi", "l2p_phi", "interf", "Y4l", 
-                                  "eta4l", "pT4l", "mll1", "mll2", "discriminant", ""};
-TString yvariables[ysize]      = {"ZZMass", "Z1Mass", "Z2Mass", "helcosthetaZ1", "helcosthetaZ2", "helphi", "costhetastar", "phistarZ1", "l1m_pT", "l1p_pT", 
-                                  "l2m_pT", "l2p_pT", "l1m_eta", "l1p_eta", "l2m_eta", "l2p_eta", "l1m_phi", "l1p_phi", "l2m_phi", "l2p_phi", "interf", "Y4l", 
-                                  "eta4l", "pT4l", "mll1", "mll2", "discriminant"};
+TString xvariables[xsize] = {""};
+TString yvariables[ysize] = {"mH", "mZ1", "mZ2", "costhetastar_VBF", "costheta1_VBF", "costheta2_VBF", "Phi_VBF", "Phi1_VBF",
+                                                 "costhetastar_ZZ4l", "costheta1_ZZ4l", "costheta2_ZZ4l", "Phi_ZZ4l", "Phi1_ZZ4l"
+                            };
 
 //********************************************************************
 //general functions, to allow any choice of variables
@@ -23,7 +21,7 @@ void makePlots(Int_t nFiles,TString *files,TString *names,TString misalignment,D
                Bool_t matrix[xsize][ysize])
 {
     stufftodelete->SetOwner(true);
-
+/*
     for (Int_t i = 0, totaltime = 0; i < nFiles; i++)
     {
         TFile *f = 0;
@@ -55,7 +53,7 @@ void makePlots(Int_t nFiles,TString *files,TString *names,TString misalignment,D
         if (i == nFiles - 1 && totaltime > nFiles)
             gSystem->Sleep(60000);
     }
-
+*/
     TString directorytomake = directory;
     gSystem->mkdir(directorytomake,true);
     if (misalignment != "")

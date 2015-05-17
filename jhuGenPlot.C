@@ -8,6 +8,7 @@
 #include "TGraphErrors.h"
 #include "TMultiGraph.h"
 #include "TText.h"
+#include "TChain.h"
 #include <iostream>
 
 using namespace std;
@@ -64,7 +65,7 @@ TCanvas *jhuGenPlot(Int_t nFiles,TString *files,TString *names,TString xvar,TStr
 
     vector<TH1*> p;
     Int_t lengths[n];
-    Float_t totalweights[n];
+    Double_t totalweights[n];
 
     Double_t xmin = -1,xmax = 1,ymin = -1,ymax = 1;
     if (type == Profile || type == ScatterPlot || type == Resolution)
@@ -114,25 +115,24 @@ TCanvas *jhuGenPlot(Int_t nFiles,TString *files,TString *names,TString xvar,TStr
             continue;
         }
 
-        TFile *f = TFile::Open(files[i]);
-        TTree *tree = (TTree*)f->Get("SelectedTree");
-        if (tree == 0)
-            tree = (TTree*)f->Get("GenTree");
+        TChain *tree = new TChain("tree");
+        for (int j = 1; nPart(j, files[i]) != ""; j++)
+            tree->Add(nPart(j, files[i]));
 
         branches.clear();
         variables.clear();
 
         lengths[i] = TMath::Min(tree->GetEntries(),maxevents > 0 ? (Long64_t)maxevents : tree->GetEntries());
 
-        Float_t x  = 0, y  = 0,
+        Double_t x  = 0, y  = 0,
                 x1 = 0, y1 = 0,
                 x2 = 0, y2 = 0,
                 x3 = 0, y3 = 0;
         x1 = x1; x2 = x2; x3 = x3; y1 = y1; y2 = y2; y3 = y3;
-        Float_t wt = 1;
-        Float_t ZZMass = 0;
-        Float_t Z1Mass = 999;
-        Float_t Z2Mass = 999;
+        Double_t wt = 1;
+        Double_t ZZMass = 0;
+        Double_t Z1Mass = 999;
+        Double_t Z2Mass = 999;
 
         if ((type == Profile || type == ScatterPlot || type == Resolution) && xvar != yvar)
         {
@@ -151,14 +151,14 @@ TCanvas *jhuGenPlot(Int_t nFiles,TString *files,TString *names,TString xvar,TStr
         }
         else
             SetBranchAddress(tree,yvar,TString(yvar).Prepend("Gen"),&y);
-        SetBranchAddress(tree,"ZZMass","GenZZMass",&ZZMass);
+        SetBranchAddress(tree,"mH","ZZMass","GenZZMass",&ZZMass);
         if (Z1Masscut > 0)
-            SetBranchAddress(tree,"Z1Mass","GenZ1Mass",&Z1Mass);
+            SetBranchAddress(tree,"mZ1","Z1Mass","GenZ1Mass",&Z1Mass);
         if (Z2Masscut > 0)
-            SetBranchAddress(tree,"Z2Mass","GenZ2Mass",&Z2Mass);
+            SetBranchAddress(tree,"mZ2","Z2Mass","GenZ2Mass",&Z2Mass);
 
-        if (xvar != "wt" && yvar != "wt")
-            SetBranchAddress(tree,"wt","MC_weight",&wt);
+        //if (xvar != "wt" && yvar != "wt")
+        //    SetBranchAddress(tree,"wt","MC_weight",&wt);
 
         Int_t notincluded = 0;
         cout << lengths[i] << endl;
