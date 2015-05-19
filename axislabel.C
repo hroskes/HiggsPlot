@@ -22,12 +22,28 @@ TString fancyname(TString variable)
     {
         variable.Insert(2,"_{");
         variable.Append("}");
+        variable.ReplaceAll("pT","(p_{T})");
     }
     variable.ReplaceAll("star","*");
     variable.ReplaceAll("theta","#theta");
+    variable.ReplaceAll("1","_{1}");
+    variable.ReplaceAll("2","_{2}");
+    variable.ReplaceAll("Eta","#eta");
     variable.ReplaceAll("Phi","#Phi");
     variable.ReplaceAll("hel","");
     variable.ReplaceAll("H","4l");
+    variable.ReplaceAll("_VBF","_{VBF}");
+    variable.ReplaceAll("_ZZ4l","_{ZZ4l}");
+    if (variable.Contains("_{VBF}}"))
+    {
+        variable.Prepend("(");
+        variable.ReplaceAll("_{VBF}}","})_{VBF}");
+    }
+    if (variable.Contains("_{ZZ4l}}"))
+    {
+        variable.Prepend("(");
+        variable.ReplaceAll("_{ZZ4l}}","})_{ZZ4l}");
+    }
     return variable;
 }
 

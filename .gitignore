@@ -1,3 +1,6 @@
 *_C.d
 *_C.so
 plots
+*.png
+*.eps
+*.root
