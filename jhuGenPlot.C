@@ -73,7 +73,7 @@ TCanvas *jhuGenPlot(Int_t nFiles,TString *files,TString *names,TString xvar,TStr
     if (type == Profile || type == ScatterPlot || type == Histogram || type == Resolution)
         axislimits(nFiles,files,yvar,ymin,ymax);
 
-    TString meansrmss[n];
+    vector<TString> meansrmss(n);
     Bool_t used[n];
 
     for (Int_t i = 0; i < n; i++)

@@ -44,6 +44,16 @@ TString fancyname(TString variable)
         variable.Prepend("(");
         variable.ReplaceAll("_{ZZ4l}}","})_{ZZ4l}");
     }
+    if (variable.Contains("}_{VBF}"))
+    {
+        variable.Prepend("(");
+        variable.ReplaceAll("}_{VBF}","})_{VBF}");
+    }
+    if (variable.Contains("}_{ZZ4l}"))
+    {
+        variable.Prepend("(");
+        variable.ReplaceAll("}_{ZZ4l}","})_{ZZ4l}");
+    }
     return variable;
 }
 
