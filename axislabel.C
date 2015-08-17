@@ -34,6 +34,8 @@ TString fancyname(TString variable)
     variable.ReplaceAll("H","4l");
     variable.ReplaceAll("_VBF","_{VBF}");
     variable.ReplaceAll("_ZZ4l","_{ZZ4l}");
+    variable.ReplaceAll("#theta_{1}_{VBF}","(#theta_{1})_{VBF}");
+    variable.ReplaceAll("#theta_{2}_{VBF}","(#theta_{2})_{VBF}");
     if (variable.Contains("_{VBF}}"))
     {
         variable.Prepend("(");
