@@ -5,3 +5,4 @@ plots
 *.eps
 *.root
 *.pcm
+LSFJOB_*
