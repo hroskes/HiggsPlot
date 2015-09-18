@@ -115,7 +115,7 @@ TCanvas *jhuGenPlot(Int_t nFiles,TString *files,TString *names,TString xvar,TStr
             continue;
         }
 
-        TChain *tree = new TChain("tree");
+        TChain *tree = new TChain("SelectedTree");
         for (int j = 1; nPart(j, files[i]) != ""; j++)
             tree->Add(nPart(j, files[i]));
 
@@ -124,15 +124,15 @@ TCanvas *jhuGenPlot(Int_t nFiles,TString *files,TString *names,TString xvar,TStr
 
         lengths[i] = TMath::Min(tree->GetEntries(),maxevents > 0 ? (Long64_t)maxevents : tree->GetEntries());
 
-        Double_t x  = 0, y  = 0,
+        Float_t x  = 0, y  = 0,
                 x1 = 0, y1 = 0,
                 x2 = 0, y2 = 0,
                 x3 = 0, y3 = 0;
         x1 = x1; x2 = x2; x3 = x3; y1 = y1; y2 = y2; y3 = y3;
-        Double_t wt = 1;
-        Double_t ZZMass = 0;
-        Double_t Z1Mass = 999;
-        Double_t Z2Mass = 999;
+        Float_t wt = 1;
+        Float_t ZZMass = 125;
+        Float_t Z1Mass = 999;
+        Float_t Z2Mass = 999;
 
         if ((type == Profile || type == ScatterPlot || type == Resolution) && xvar != yvar)
         {
@@ -151,7 +151,7 @@ TCanvas *jhuGenPlot(Int_t nFiles,TString *files,TString *names,TString xvar,TStr
         }
         else
             SetBranchAddress(tree,yvar,TString(yvar).Prepend("Gen"),&y);
-        SetBranchAddress(tree,"mH","ZZMass","GenZZMass",&ZZMass);
+        //SetBranchAddress(tree,"mH","ZZMass","GenZZMass",&ZZMass);
         if (Z1Masscut > 0)
             SetBranchAddress(tree,"mZ1","Z1Mass","GenZ1Mass",&Z1Mass);
         if (Z2Masscut > 0)

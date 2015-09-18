@@ -3,12 +3,12 @@
 #include "TSystem.h"
 
 const Int_t xsize = 1;
-const Int_t ysize = 12;
+const Int_t ysize = 11;
 
 TString xvariables[xsize] = {""};
-TString yvariables[ysize] = {"mH", "mZ1", "mZ2", "costhetastar_VBF", "costheta1_VBF", "costheta2_VBF", "Phi_VBF", "Phi1_VBF",
-                                                 //"costhetastar_ZZ4l", "costheta1_ZZ4l", "costheta2_ZZ4l", "Phi_ZZ4l", "Phi1_ZZ4l",
-                             "mJJ_VBF", "dPhi_VBF", "dEta_VBF", /*"sqrtminusq2", */"pTH", /*""//, "costhetastar_ZZ4l_zhat", "costhetastar_ZZ4l_parton"*/
+TString yvariables[ysize] = {/*"GenHMass", "GenZ1Mass", "GenZ2Mass",
+                             "Gencosthetastar_VBF", "GenhelcosthetaV1_VBF", "GenhelcosthetaV2_VBF", "Genhelphi_VBF", "GenphistarV1_VBF",
+                             "GenDijetMass", "GenDRjet",*/ "GenHPt"
                             };
 
 //********************************************************************

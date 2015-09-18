@@ -13,7 +13,13 @@ enum PlotType {ScatterPlot,Profile,Histogram,Resolution};
 //This just puts the variable name into a fancy format, with greek letters and subscripts
 TString fancyname(TString variable)
 {
+    variable.ReplaceAll("Gen","");
+    variable.ReplaceAll("HPt","pTH");
     variable.ReplaceAll("JJ_VBF", "JJ");
+    variable.ReplaceAll("Dijet", "JJ");
+    variable.ReplaceAll("jet", "_{jet}");
+    variable.ReplaceAll("DR", "dR");
+    variable.ReplaceAll("phistarV1","phi_{1}");
     if (variable.BeginsWith("m"))
     {
         variable.Insert(1,"_{");
@@ -25,12 +31,19 @@ TString fancyname(TString variable)
         variable.Append("}");
         variable.ReplaceAll("pT","(p_{T})");
     }
+    if (variable.EndsWith("Mass"))
+    {
+        variable.ReplaceAll("Mass", "}");
+        variable.Prepend("m_{");
+    }
     variable.ReplaceAll("star","*");
+    variable.ReplaceAll("thetaV","theta");
     variable.ReplaceAll("theta","#theta");
     variable.ReplaceAll("1","_{1}");
     variable.ReplaceAll("2","_{2}");
     variable.ReplaceAll("Eta","#eta");
     variable.ReplaceAll("Phi","#Phi");
+    variable.ReplaceAll("phi","#Phi");
     variable.ReplaceAll("hel","");
     variable.ReplaceAll("H","4l");
     variable.ReplaceAll("_VBF","_{VBF}");

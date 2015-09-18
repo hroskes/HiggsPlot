@@ -179,27 +179,32 @@ void axislimits(Int_t nFiles,TString *files,TString var,Double_t &min,Double_t &
         max = 12;
         min = -12;
     }
-    else if (var == "mJJ_VBF")
+    else if (var == "GenDRjet")
+    {
+        max = 12;
+        min = 0;
+    }
+    else if (var == "mJJ_VBF" || var == "GenDijetMass")
     {
         max = 4000;
         min = 0;
     }
-    else if (var == "pTH")
+    else if (var == "pTH" || var == "GenHPt")
     {
         max = 1200;
         min = 0;
     }
-    else if (var == "mH")
+    else if (var == "mH" || var == "GenHMass")
     {
         max = ZZMassmax;
         min = ZZMassmin;
     }
-    else if (var == "mZ1")
+    else if (var == "mZ1" || var == "GenZ1Mass")
     {
         max = /*92*/200;
         min = TMath::Max(4.,Z1Masscut);
     }
-    else if (var == "mZ2")
+    else if (var == "mZ2" || var == "GenZ2Mass")
     {
         max = /*40*/200;
         min = TMath::Max(4.,Z2Masscut);
