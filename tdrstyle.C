@@ -6,7 +6,6 @@
 #include "TStyle.h"
 #include "TROOT.h"
 #include "TColor.h"
-#include "axislabel.C"
 #include "TGaxis.h"
 
 
